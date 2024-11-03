@@ -26,28 +26,22 @@ public class FunctionalFun {
 
     public static String testCase(Set<String> domain, Set<String> codomain, Scanner scanner) {
         int n = Integer.parseInt(scanner.nextLine());
-        Map<String, String> functionMap = new HashMap<>();
 
+        Map<String, String> functionMap = new HashMap<>();
         for (int i = 0; i < n; i++) {
             String[] mapping = scanner.nextLine().split(" -> ");
-            String domElement = mapping[0];
-            String codElement = mapping[1];
-
-            if (functionMap.containsKey(domElement) && !functionMap.get(domElement).equals(codElement)) {
-                return "not a function";
-            }
-            functionMap.put(domElement, codElement);
+            functionMap.put(mapping[0], mapping[1]);
         }
 
         Set<String> functionDomain = functionMap.keySet();
         Set<String> functionCodomain = new HashSet<>(functionMap.values());
 
-        if (!domain.containsAll(functionDomain) || !codomain.containsAll(functionCodomain)) {
+        if (functionMap.size() != n || !domain.containsAll(functionDomain) || !codomain.containsAll(functionCodomain)) {
             return "not a function";
         }
 
-        boolean injective = functionMap.size() == functionCodomain.size();
-        boolean surjective = functionCodomain.containsAll(codomain);
+        boolean surjective = codomain.equals(functionCodomain);
+        boolean injective = functionMap.values().size() == functionCodomain.size();
 
         if (surjective) {
             if (injective) {
@@ -63,5 +57,4 @@ public class FunctionalFun {
             }
         }
     }
-
 }
