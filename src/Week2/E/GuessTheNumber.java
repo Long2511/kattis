@@ -24,7 +24,6 @@ public class GuessTheNumber {
 
             String response = readFromTerminal.readLine().trim();
 
-
             if (response.equals("correct")) {
                 break;
             }

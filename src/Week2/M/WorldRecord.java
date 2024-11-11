@@ -4,27 +4,27 @@ import java.util.Scanner;
 
 public class WorldRecord {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-        // Read inputs
-        int n = scanner.nextInt(); // number of jumps
-        int currentRecord = scanner.nextInt(); // current off-world record height
-        int previousRecord = scanner.nextInt(); // previous record height (not used in calculations)
+        int numerOfHighJump;
+        long current;
+        long previous;
 
-        int newRecords = 0;
+        numerOfHighJump = sc.nextInt();
+        current = sc.nextLong();
+        previous = sc.nextLong();
 
-        // Process each jump height
-        for (int i = 0; i < n; i++) {
-            int jumpHeight = scanner.nextInt();
-            if (jumpHeight > currentRecord) {
-                currentRecord = jumpHeight;
-                newRecords++;
+        int count = 0;
+
+        for (int i = 0; i < numerOfHighJump; i++) {
+            long height = sc.nextLong();
+            if (height > current + previous) {
+                previous = current;
+                current = height;
+                count++;
             }
         }
 
-        // Output the number of new records set
-        System.out.println(newRecords);
-
-        scanner.close();
+        System.out.println(count);
     }
 }
