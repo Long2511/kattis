@@ -3,75 +3,56 @@ package Week3.P;
 import java.util.Scanner;
 
 public class Factovisors {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String line;
 
-        while (sc.hasNextLine()) {
-            line = sc.nextLine().trim();
-            if (line.equals("")) continue;
-            String[] tokens = line.split("\\s+");
-
-            int n = Integer.parseInt(tokens[0]);
-            long m = Long.parseLong(tokens[1]);
-
-            if (m == 0) {
-                System.out.println("Division by zero is undefined.");
-                continue;
-            }
-
-            if (m == 1 || m <= n) {
-                System.out.println(m + " divides " + n + "!");
-                continue;
-            }
-
-            boolean divides = true;
-            long M = m;
-            long tempM = m;
-
-            for (long i = 2; i * i <= tempM; i++) {
-                int countM = 0;
-
-                while (tempM % i == 0) {
-                    tempM /= i;
-                    countM++;
-                }
-
-                if (countM > 0) {
-                    long countN = countPrimeInFactorial(n, i);
-                    if (countN < countM) {
-                        divides = false;
-                        break;
-                    }
-                }
-            }
-
-            if (divides && tempM > 1) {
-                if (tempM > n) {
-                    divides = false;
-                } else {
-                    long countN = countPrimeInFactorial(n, tempM);
-                    if (countN < 1) {
-                        divides = false;
-                    }
-                }
-            }
-
-            if (divides) {
-                System.out.println(M + " divides " + n + "!");
-            } else {
-                System.out.println(M + " does not divide " + n + "!");
-            }
-        }
+    public static int gcd(int a, int b) {
+        if (b == 0) return a;
+        return gcd(b, a % b);
     }
 
-    private static long countPrimeInFactorial(int n, long p) {
-        long count = 0;
-        long divisor = p;
-        while (divisor <= n) {
-            count += n / divisor;
-            divisor *= p;
+    public static boolean mDivideNFactorial(int n, int m) {
+        if (m == 0) return false;
+
+        for (int divisor = 2; divisor <= Math.sqrt(m); divisor++) {
+            if (m % divisor != 0) continue;
+
+            int power = 0;
+            while (m % divisor == 0) {
+                m /= divisor;
+                power += 1;
+            }
+
+            int powerInNFactorial = 0;
+            int powDivisor = 1;
+            while (powDivisor <= n / divisor && powerInNFactorial < power) {
+                powDivisor *= divisor;
+                powerInNFactorial += n / powDivisor;
+            }
+
+            if (power > powerInNFactorial) {
+                return false;
+            }
         }
-        return count;
+
+        if (m <= Math.max(1, n)) return true;
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (scanner.hasNextLine()) {
+            String input = scanner.nextLine();
+            String[] data = input.split(" ");
+            int n = Integer.valueOf(data[0]);
+            int m = Integer.valueOf(data[1]);
+
+            if (mDivideNFactorial(n, m)) {
+                System.out.printf("%d divides %d!\n", m, n);
+            } else {
+                System.out.printf("%d does not divide %d!\n", m, n);
+            }
+        }
+
+        scanner.close();
     }
 }
