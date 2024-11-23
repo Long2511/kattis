@@ -1,3 +1,13 @@
+
+/**
+ * Advanced Object Oriented Programming with Java, WiSe 2023/2024
+ * Problem: <a href="https://open.kattis.com/problems/perfectpowers">Perfect Pth Powers</a>
+ * @author Hai Long Mac
+ *
+ * Method : Ad-Hoc
+ * Status : Accepted
+ * Runtime: 0.11
+ */
 package Week3.O;
 
 import java.util.Scanner;

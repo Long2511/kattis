@@ -1,3 +1,13 @@
+
+/**
+ * Advanced Object Oriented Programming with Java, WiSe 2023/2024
+ * Problem: <a href="https://open.kattis.com/problems/batmanacci">Batmanacci</a>
+ * @author Hai Long Mac
+ *
+ * Method : Ad-Hoc
+ * Status : Accepted
+ * Runtime: 0.10
+ */
 package Week4.O;
 
 import java.util.Scanner;

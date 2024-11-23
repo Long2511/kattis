@@ -1,3 +1,13 @@
+
+/**
+ * Advanced Object Oriented Programming with Java, WiSe 2023/2024
+ * Problem: <a href="https://open.kattis.com/problems/vegetables">Boiling Vegetables</a>
+ * @author Hai Long Mac
+ *
+ * Method : Ad-Hoc
+ * Status : Accepted
+ * Runtime: 0.14
+ */
 package Week4.N;
 
 import java.util.PriorityQueue;

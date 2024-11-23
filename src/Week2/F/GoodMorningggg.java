@@ -1,3 +1,13 @@
+
+/**
+ * Advanced Object Oriented Programming with Java, WiSe 2023/2024
+ * Problem: <a href="https://open.kattis.com/problems/goodmorning">Good Morning!</a>
+ * @author Hai Long Mac
+ *
+ * Method : Ad-Hoc
+ * Status : Accepted
+ * Runtime: 0.11
+ */
 package Week2.F;
 
 import java.util.ArrayList;

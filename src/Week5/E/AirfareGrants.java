@@ -1,3 +1,13 @@
+
+/**
+ * Advanced Object Oriented Programming with Java, WiSe 2023/2024
+ * Problem: <a href="https://open.kattis.com/problems/airfaregrants">Airfare Grants</a>
+ * @author Hai Long Mac
+ *
+ * Method : Ad-Hoc
+ * Status : Accepted
+ * Runtime: 0.09
+ */
 package Week5.E;
 
 import java.util.Scanner;
