@@ -34,6 +34,7 @@ public class PrimeSpiral {
         toNum.put(new Pair<>(currx, curry), 1);
         toCoord.set(1, new Pair<>(currx, curry));
 
+
         int curr = 2;
         int steps = 1;
         // Generate the spiral and store composite numbers

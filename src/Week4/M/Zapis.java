@@ -1,12 +1,9 @@
 package Week4.M;
 
-import java.util.Scanner;
-
 import java.util.*;
 
-public class Zapis
-{
-    public static int countValidSequences(int N, String s) {
+public class Zapis {
+    public static long countValidSequences(int N, String s) {
         int mod = 100000;
         Map<Character, Character> matchingPairs = new HashMap<>();
         matchingPairs.put('(', ')');
@@ -17,7 +14,8 @@ public class Zapis
         Set<Character> closingBrackets = new HashSet<>(matchingPairs.values());
 
         int n = s.length();
-        int[][] dp = new int[n][n];
+        long[][] dp = new long[n][n];
+        boolean overflow = false;
 
         // Base cases: dp[i][i - 1] = 1 (empty substring is valid)
         for (int i = 0; i < n; i++) {
@@ -63,23 +61,49 @@ public class Zapis
                     }
 
                     if (ways > 0) {
-                        int left = (i + 1 <= k - 1) ? dp[i + 1][k - 1] : 1;
-                        int right = (k + 1 <= j) ? dp[k + 1][j] : 1;
-                        dp[i][j] += ways * left * right;
+                        long left = (i + 1 <= k - 1) ? dp[i + 1][k - 1] : 1;
+                        long right = (k + 1 <= j) ? dp[k + 1][j] : 1;
+
+                        long add =  (ways * left * right) % mod;
+                        if (i == 0 && j == n - 1) {
+                            if (ways * left * right > 100000) {
+                                overflow = true;
+                            }
+                        }
+                        dp[i][j] += add;
+                        if (i == 0 && j == n - 1) {
+                            if (dp[i][j] > 100000) {
+                                overflow = true;
+                            }
+                        }
                         dp[i][j] %= mod;
                     }
                 }
             }
         }
-
+        if(overflow) {
+            if(dp[0][n - 1] < 10) {
+                System.out.print("0000");
+            }
+            else if(dp[0][n - 1] < 100) {
+                System.out.print("000");
+            }
+            else if(dp[0][n - 1] < 1000) {
+                System.out.print("00");
+            }
+            else if(dp[0][n - 1] < 10000) {
+                System.out.print("0");
+            }
+        }
         return dp[0][n - 1] % mod;
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int N = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine();
         String s = scanner.nextLine().trim();
+
         System.out.println(countValidSequences(N, s));
     }
 }
