@@ -8,6 +8,7 @@
  * Status : Accepted
  * Runtime: 0.95
  */
+
 package Week5.B;
 
 import java.util.Scanner;

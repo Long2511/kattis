@@ -3,7 +3,6 @@
  * Advanced Object Oriented Programming with Java, WiSe 2023/2024
  * Problem: <a href="https://open.kattis.com/problems/airfaregrants">Airfare Grants</a>
  * @author Hai Long Mac
- *
  * Method : Ad-Hoc
  * Status : Accepted
  * Runtime: 0.09
@@ -41,7 +40,7 @@ public class AirfareGrants {
             }
         }
 
-        // Calculate the reimbursement limit
+        // Calculate the reimbursement limitd
         double reimbursementLimit = maxPrice / 2.0;
 
         // Calculate the actual reimbursement
